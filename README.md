@@ -1,9 +1,7 @@
-# The Plain v1
+# Everything JS
 
-A minimalist Jekyll theme, made with passion for simplicity by [Heiswayi Nrird](http://heiswayi.github.io). More details about it [**here**](http://heiswayi.github.io/the-plain.html); **theme description**, **screenshot**, **install instructions** and **demo link**.
+Struggling through the first few hours of learning a API/library was daunting and often frustrating. I often wished there was a starter guide to set a mental model and correct misguided assumptions. So here, I document my thought process that eventually led me to understanding the subject at hand.
 
 ## Credits
 
-This theme is based on Leonard Lamprecht's [Jekyll theme][1] and released under [MIT license](LICENSE).
-
-[1]: https://github.com/leo/leo.github.io
+Created using [**The Plain**](http://jekyllthemes.org/themes/the-plain/) Jekyll theme.
