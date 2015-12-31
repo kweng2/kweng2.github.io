@@ -1,0 +1,44 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Test</title><meta name="twitter:card" content="summary" /><meta name="twitter:site" content="@" /><meta name="twitter:title" content="Test" /><meta name="twitter:description" content="```html&lt;!DOCTYPE html&gt; To Do "><meta name="description" content="```html&lt;!DOCTYPE html&gt; To Do "><link rel="icon" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/touch-icon.png"><link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css"><link rel="stylesheet" href="/assets/core.css"><link rel="canonical" href="/notes/test"><link rel="alternate" type="application/atom+xml" title="Everything JS" href="/feed.xml" /></head><body><aside class="logo"> <a href="/"> <img src="http://i.imgur.com/lXpakuT.jpg?1" class="gravatar" width="80px"> </a> <span class="logo-prompt">Back to Home</span></aside><main> <noscript><style> article .footnotes { display: block; }</style></noscript><article><div class="center"><h1>Test</h1><time>December 31, 2015</time></div><div class="divider"></div><pre><code class="language-html">&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+  &lt;head&gt;
+    &lt;title&gt;To Do&lt;/title&gt;
+    &lt;script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.14/angular.min.js"&gt;&lt;/script&gt;
+    &lt;script src = "app.js"&gt;&lt;/script&gt;
+  &lt;/head&gt;
+
+  &lt;body ng-app='ngTodo'&gt;
+    &lt;div class="todos-container" ng-controller='todoController'&gt;
+      &lt;h1&gt;To Dos&lt;/h1&gt;
+&lt;!--       &lt;input ng-model="newTodo"/&gt;
+      &lt;button ng-click="todos.push(newTodo)"&gt;Submit&lt;/button&gt;
+ --&gt;
+      &lt;form ng-submit="handleClick()"&gt;
+        &lt;input type="text" ng-model="newTodo" /&gt;
+        &lt;input type="button" value="submit" ng-click="handleClick()" /&gt;
+      &lt;/form&gt;
+      &lt;!-- &lt;submit type="button" ng-submit= --&gt;
+      &lt;ul&gt;
+        &lt;li ng-repeat="todo in todos track by $index" ng-click="todos.splice($index, 1)"&gt;&lt;/li&gt;
+      &lt;/ul&gt;
+
+      &lt;hr&gt;
+      &lt;!-- &lt;pre&gt;
+        
+      &lt;/pre&gt; --&gt;
+    &lt;/div&gt;
+  &lt;/body&gt;
+&lt;/html&gt;
+</code></pre><pre><code class="language-javascript">//app.js
+console.log(angular);
+angular.module('ngTodo', [])
+  .controller('todoController', function($scope) {
+    $scope.todos = [];
+
+    $scope.handleClick = function() {
+      console.log('clicked');
+      $scope.todos.push($scope.newTodo);
+      $scope.newTodo = '';
+    };
+});
+
+</code></pre></article><div class="back"> <a href="/">Back</a></div></main></body></html>
