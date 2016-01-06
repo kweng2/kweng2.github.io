@@ -16,3 +16,11 @@ To query all students, use:
 * GET to /students, /students/id, and /students/cohort
 * POST to /students
 * PUT to /students/id
+
+### Useful Reminder
+While deploying to Heroku, when adding an add-on, like MongoLab, make sure to set config variables in terminal:
+
+```
+$ heroku config:set MONGOLAB_URI=?????
+```
+Replace ```?????``` with config variables, accessible through Heroku
