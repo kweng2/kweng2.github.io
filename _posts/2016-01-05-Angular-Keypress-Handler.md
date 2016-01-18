@@ -11,14 +11,15 @@ Using Angular's ```ng-keypress```:
   <input type="text" ng-keypress="pressed($event)" >
 </div>
 ```
-```javacript
+
+{% highlight javascript %}
 angular.module('Example', [])
   .controller('exampleCtrl', function ($scope) {
     $scope.pressed = function ($event) {
       console.log($event.charCode);
     };
   });
-```
+{% endhighlight %}
 
 The input text field is really convenient for the key-press event here because the input field can be "focused". To detect key press events on the window itself, the ```exampleCtrl``` must be attached to the ```<body>``` tag rather than a ```<div>``` tag. 
 
