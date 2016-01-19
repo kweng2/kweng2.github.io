@@ -37,4 +37,4 @@ Using ```ng-keypress``` may not detect arrow keys or enter keys. Use ```ng-keydo
 
 ### Live Example
 
-<a href="https://stormy-ridge-2371.herokuapp.com/" target="_blank">SNAKE</A> is a project I completed in January 2016, using MongoDB, Express, Angular, and Node. It uses ```ng-keydown``` to detect keypresses.
+<a href="https://snake-kweng2.herokuapp.com/" target="_blank">SNAKE</A> is a project I completed in January 2016, using MongoDB, Express, Angular, and Node. It uses ```ng-keydown``` to detect keypresses.
