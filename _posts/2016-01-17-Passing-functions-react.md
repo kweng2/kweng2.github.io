@@ -32,7 +32,7 @@ var Button = React.createClass({
 
 When the app renders, the button also renders. When the button is clicked, here is the chain of event that cascades starting from the button's ```onClick``` definition
 
-1. Line 22: ```this.clickHandler```
-2. Line 23: ```this.props.clicked``` references ```{this.handleClick}``` from the app, per definition on line 16
-4. Line 10: ```this.handleClick(input)```
-5. Line 11: ```alert('From the child component: ', 'Hello from Button');```
+1. ```this.clickHandler``` on line 22
+2. ```this.props.clicked``` on line 23 references ```{this.handleClick}``` from the app, per definition on line 16
+3. ```this.handleClick(input)``` on line 10
+4. ```alert('From the child component: ', 'Hello from Button');```
