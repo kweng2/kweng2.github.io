@@ -1,0 +1,22 @@
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Postgres Within Docker</title><meta name="twitter:card" content="summary" /><meta name="twitter:site" content="@" /><meta name="twitter:title" content="Postgres Within Docker" /><meta name="twitter:description" content="Disclaimer!Setting up Postgres requires a user, password, and a new database, which all need to be created in a Dockerfile. Otherwise, any server trying to connect to the database, despite correct ..."><meta name="description" content="Disclaimer!Setting up Postgres requires a user, password, and a new database, which all need to be created in a Dockerfile. Otherwise, any server trying to c..."><link rel="icon" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/touch-icon.png"><link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css"><link rel="stylesheet" href="/assets/core.css"><link rel="canonical" href="/notes/Postgres-with-Docker"><link rel="alternate" type="application/atom+xml" title="Everything JS" href="/feed.xml" /></head><body><aside class="logo"> <a href="/"> <img src="http://i.imgur.com/lXpakuT.jpg?1" class="gravatar" width="80px"> </a> <span class="logo-prompt">Back to Home</span></aside><main> <noscript><style> article .footnotes { display: block; }</style></noscript><article><div class="center"><h1>Postgres Within Docker</h1><time>January 28, 2016</time></div><div class="divider"></div><h3 id="disclaimer">Disclaimer!</h3><p>Setting up Postgres requires a user, password, and a new database, which all need to be created in a Dockerfile. Otherwise, any server trying to connect to the database, despite correct port pointing, will not work.</p><h3 id="how-to-set-up-postgres-within-docker">How to Set-up Postgres within Docker</h3><p>Here is the Dockerfile that will create a Postgres database and set it up with user ‘docker’, password ‘docker’, and database ‘docker’.</p><p>This code block comes from <a href="https://docs.docker.com/engine/examples/postgresql_service/">docs.docker</a></p><h5 id="create-this-docker-container-from-an-existing-image-ubuntu">Create this docker container from an existing image, ubuntu:</h5><pre><code>FROM ubuntu
+</code></pre><h5 id="install-postgres">Install Postgres</h5><pre><code>RUN apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys B97B0AFCAA1A47F044F244A07FCC7D46ACCC4CF8
+
+RUN echo "deb http://apt.postgresql.org/pub/repos/apt/ precise-pgdg main" &gt; /etc/apt/sources.list.d/pgdg.list
+
+RUN apt-get update &amp;&amp; apt-get install -y python-software-properties software-properties-common postgresql-9.3 postgresql-client-9.3 postgresql-contrib-9.3
+</code></pre><h5 id="log-into-postgres-as-the-default-user-postgres">Log into Postgres as the default user, ‘postgres’:</h5><pre><code>USER postgres
+</code></pre><h5 id="create-a-user-named-docker-with-the-password-docker-then-create-a-database-named-docker">Create a user named ‘docker’, with the password ‘docker’, then create a database named ‘docker’:</h5><pre><code>RUN    /etc/init.d/postgresql start &amp;&amp;\
+    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &amp;&amp;\
+    createdb -O docker docker
+</code></pre><h3 id="difficulties-with-postgres-set-up">Difficulties with Postgres Set-up</h3><p>One of the most painful challenges to run into is setting up Postgres, because crushing that bug isn’t even satisfying! So here is an easy to miss step that can be a real headache to debug, step 4 outlined above.</p><p>So, alternatively, a Postgres container can be set up like this:</p><pre><code>FROM postgres
+
+USER postgres
+
+RUN    /etc/init.d/postgresql start &amp;&amp;\
+    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &amp;&amp;\
+    createdb -O docker docker
+
+EXPOSE 5432
+
+CMD ["postgres"]
+</code></pre></article><div class="back"> <a href="/">Back</a></div></main></body></html>
