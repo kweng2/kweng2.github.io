@@ -67,3 +67,4 @@ connection: {
 }
 ```
 
+This should alleviate some pain of trying to set up Postgres on Docker
