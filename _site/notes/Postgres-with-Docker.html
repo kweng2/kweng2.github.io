@@ -8,15 +8,13 @@ RUN apt-get update &amp;&amp; apt-get install -y python-software-properties soft
 </code></pre><h5 id="create-a-user-named-docker-with-the-password-docker-then-create-a-database-named-docker">Create a user named ‘docker’, with the password ‘docker’, then create a database named ‘docker’:</h5><pre><code>RUN    /etc/init.d/postgresql start &amp;&amp;\
     psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &amp;&amp;\
     createdb -O docker docker
-</code></pre><h3 id="difficulties-with-postgres-set-up">Difficulties with Postgres Set-up</h3><p>One of the most painful challenges to run into is setting up Postgres, because crushing that bug isn’t even satisfying! So here is an easy to miss step that can be a real headache to debug, step 4 outlined above.</p><p>So, alternatively, a Postgres container can be set up like this:</p><pre><code>FROM postgres
-
-USER postgres
-
-RUN    /etc/init.d/postgresql start &amp;&amp;\
-    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &amp;&amp;\
-    createdb -O docker docker
-
-EXPOSE 5432
-
-CMD ["postgres"]
+</code></pre><h3 id="difficulties-with-postgres-set-up">Difficulties with Postgres Set-up</h3><p>One of the most painful challenges to run into is setting up Postgres, because crushing that bug isn’t even satisfying! So here is an easy to miss step that can be a real headache to debug, step 4 outlined above.</p><h3 id="easier-solution-less-options">Easier Solution, Less Options</h3><p>So, alternatively, a Postgres docker container is already set up from the postgres image, available on <a href="https://hub.docker.com/_/postgres/">Docker Hub</a></p><p>Include it in the docker-compose.yml file:</p><pre><code>postgres:
+  image: postgres
+</code></pre><p>So when <code>docker-compose up</code> is run, port 5432 is then exposed.</p><p>This image has configured a default user <code>postgres</code> with the password <code>mysecretpassword</code>, and a default database ‘<code>postgres</code>’.</p><p>Due to these pre-existing configuration, connecting an ORM to this Postgres database is as simple as specifying the connection parameters as such:</p><pre><code class="language-javascript">connection: {
+  host: 'postgres',
+  user: 'postgres',
+  password: 'mysecretpassword',
+  database: 'postgres',
+  charset: 'utf8'
+}
 </code></pre></article><div class="back"> <a href="/">Back</a></div></main></body></html>

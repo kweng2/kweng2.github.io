@@ -41,21 +41,29 @@ RUN    /etc/init.d/postgresql start &&\
 ### Difficulties with Postgres Set-up
 One of the most painful challenges to run into is setting up Postgres, because crushing that bug isn't even satisfying! So here is an easy to miss step that can be a real headache to debug, step 4 outlined above.
 
-So, alternatively, a Postgres container can be set up like this:
+### Easier Solution, Less Options
+So, alternatively, a Postgres docker container is already set up from the postgres image, available on [Docker Hub](https://hub.docker.com/_/postgres/)
+
+Include it in the docker-compose.yml file:
 
 ```
-FROM postgres
-
-USER postgres
-
-RUN    /etc/init.d/postgresql start &&\
-    psql --command "CREATE USER docker WITH SUPERUSER PASSWORD 'docker';" &&\
-    createdb -O docker docker
-
-EXPOSE 5432
-
-CMD ["postgres"]
+postgres:
+  image: postgres
 ```
 
+So when ```docker-compose up``` is run, port 5432 is then exposed.
 
+This image has configured a default user ```postgres``` with the password ```mysecretpassword```, and a default database '```postgres```'.
+
+Due to these pre-existing configuration, connecting an ORM to this Postgres database is as simple as specifying the connection parameters as such:
+
+```javascript
+connection: {
+  host: 'postgres',
+  user: 'postgres',
+  password: 'mysecretpassword',
+  database: 'postgres',
+  charset: 'utf8'
+}
+```
 
