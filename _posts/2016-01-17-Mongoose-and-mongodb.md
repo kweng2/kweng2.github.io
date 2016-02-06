@@ -49,7 +49,7 @@ Suppose this person went to GenericName High School, graduating in 2008, then to
 }]
 {% endhighlight %}
 
-We can gain access to to the object via ```findOne``` then operate on the array as needed, then perform a ```.save()``` operation. So in case we want to highschool entry entirely, the code would take the following form:
+We can gain access to to the object via ```findOne``` then operate on the array as needed, then perform a ```.save()``` operation. The code would take the following form:
 
 {% highlight javascript %}
 Person.findOne({name: 'Kevin'}, function (err, foundPerson) {

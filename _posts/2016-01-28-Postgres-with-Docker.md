@@ -4,9 +4,9 @@ updated: 2016-01-28
 ---
 
 ### Disclaimer!
-Setting up Postgres requires a user, password, and a new database, which all need to be created in a Dockerfile. Otherwise, any server trying to connect to the database, despite correct port pointing, will not work.
+Setting up Postgres requires a user, password, and a new database. Otherwise, any server trying to connect to the database, despite correct port pointing, will not work.
 
-### How to Set-up Postgres within Docker
+### How to Set-up Postgres within Docker The Hard Way
 
 Here is the Dockerfile that will create a Postgres database and set it up with user 'docker', password 'docker', and database 'docker'.
 
@@ -66,5 +66,13 @@ connection: {
   charset: 'utf8'
 }
 ```
+
+### Easiest Solution:
+
+In the docker-compose.yml file, setting these environment variables: ```POSTGRES_USER```, ```POSTGRES_PASSWORD```, and ```POSTGRES_DB``` will actually create a user with such username and password, as well as create a database with that name if it didn't already exist.
+
+Now all that's left is using the newly assigned user, password, and database name as the connection string.
+
+Checkout the [Postgres image](https://hub.docker.com/_/postgres/) documentation on Docker Hub for more info.
 
 This should alleviate some pain of trying to set up Postgres on Docker

@@ -10,7 +10,7 @@ var io = require('socket.io').listen(server);
 io.to('7s6df58sg9as567d').emit('MESSAGE');
 ```
 
-There is a caveat here, plugging this string into ```some_socket_id``` will throw an error.
+There is a caveat here; this won't actually work.
 
 For individual sockets, it is necessary to add /# in front of the socket id:
 
