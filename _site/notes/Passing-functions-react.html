@@ -1,22 +1,22 @@
-<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Passing Functions Downstream in React</title><meta name="twitter:card" content="summary" /><meta name="twitter:site" content="@" /><meta name="twitter:title" content="Passing Functions Downstream in React" /><meta name="twitter:description" content="Simple example of how to pass a event handler from a parent component to a child component:"><meta name="description" content="Simple example of how to pass a event handler from a parent component to a child component:"><link rel="icon" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/touch-icon.png"><link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css"><link rel="stylesheet" href="/assets/core.css"><link rel="canonical" href="/notes/Passing-functions-react"><link rel="alternate" type="application/atom+xml" title="Everything JS" href="/feed.xml" /></head><body><aside class="logo"> <a href="/"> <img src="http://i.imgur.com/lXpakuT.jpg?1" class="gravatar" width="80px"> </a> <span class="logo-prompt">Back to Home</span></aside><main> <noscript><style> article .footnotes { display: block; }</style></noscript><article><div class="center"><h1>Passing Functions Downstream in React</h1><time>January 17, 2016</time></div><div class="divider"></div><p>Simple example of how to pass a event handler from a parent component to a child component:</p><figure class="highlight"><pre><code class="language-html" data-lang="html"><span class="lineno"> 1</span> var app = React.createClass({
-<span class="lineno"> 2</span>   handleClick: function (input) {
-<span class="lineno"> 3</span>     alert(&#39;From the child component: &#39;, input);
-<span class="lineno"> 4</span>   },
-<span class="lineno"> 5</span>   render: function () {
-<span class="lineno"> 6</span>     return <span class="nt">&lt;div&gt;</span>
-<span class="lineno"> 7</span>       <span class="nt">&lt;p&gt;</span>Hello World<span class="nt">&lt;/p&gt;</span>
-<span class="lineno"> 8</span>       <span class="nt">&lt;Button</span> <span class="na">clicked=</span><span class="s">{this.handleClick}</span> <span class="nt">/&gt;</span>
-<span class="lineno"> 9</span>     <span class="nt">&lt;/div&gt;</span>
-<span class="lineno">10</span>   }
-<span class="lineno">11</span> });
-<span class="lineno">12</span> 
-<span class="lineno">13</span> var Button = React.createClass({
-<span class="lineno">14</span>   clickHandler: function () {
-<span class="lineno">15</span>     this.props.clicked(&#39;Hello from Button&#39;);
-<span class="lineno">16</span>   },
-<span class="lineno">17</span>   render: function () {
-<span class="lineno">18</span>     return <span class="nt">&lt;button</span> <span class="na">onClick=</span><span class="s">{this.clickHandler}</span><span class="nt">&gt;</span>
-<span class="lineno">19</span>       Click Me!
-<span class="lineno">20</span>     <span class="nt">&lt;/button&gt;</span>
-<span class="lineno">21</span>   }
-<span class="lineno">22</span> });</code></pre></figure><p>When the app renders, the button also renders. When the button is clicked, here is the chain of event that cascades starting from the button’s <code>onClick</code> definition</p><ol><li><code>this.clickHandler</code> on line 22</li><li><code>this.props.clicked</code> on line 23 references <code>{this.handleClick}</code> from the app, per definition on line 16</li><li><code>this.handleClick(input)</code> on line 10</li><li><code>alert('From the child component: ', 'Hello from Button');</code></li></ol></article><div class="back"> <a href="/">Back</a></div></main></body></html>
+<!DOCTYPE html><html lang="en"><head><meta charset="utf-8"><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta name="viewport" content="width=device-width, initial-scale=1" /><title>Passing Functions Downstream in React</title><meta name="twitter:card" content="summary" /><meta name="twitter:site" content="@" /><meta name="twitter:title" content="Passing Functions Downstream in React" /><meta name="twitter:description" content="Simple example of how to pass a event handler from a parent component to a child component:"><meta name="description" content="Simple example of how to pass a event handler from a parent component to a child component:"><link rel="icon" href="/assets/favicon.png"><link rel="apple-touch-icon" href="/assets/touch-icon.png"><link rel="stylesheet" href="//code.cdn.mozilla.net/fonts/fira.css"><link rel="stylesheet" href="/assets/core.css"><link rel="canonical" href="/notes/Passing-functions-react"><link rel="alternate" type="application/atom+xml" title="Everything JS" href="/feed.xml" /></head><body><aside class="logo"> <a href="/"> <img src="http://i.imgur.com/lXpakuT.jpg?1" class="gravatar" width="80px"> </a> <span class="logo-prompt">Back to Home</span></aside><main> <noscript><style> article .footnotes { display: block; }</style></noscript><article><div class="center"><h1>Passing Functions Downstream in React</h1><time>January 17, 2016</time></div><div class="divider"></div><p>Simple example of how to pass a event handler from a parent component to a child component:</p><figure class="highlight">><code class="language-html" data-lang="html"><table style="border-spacing: 0"><tbody><tr><td class="gutter gl" style="text-align: right"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22</pre></td><td class="code">
