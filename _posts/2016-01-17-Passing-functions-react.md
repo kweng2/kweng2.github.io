@@ -5,7 +5,7 @@ updated: 2016-01-17
 
 Simple example of how to pass a event handler from a parent component to a child component:
 
-{% highlight html linenos %}
+{% highlight html %}
 var app = React.createClass({
   handleClick: function (input) {
     alert('From the child component: ', input);
