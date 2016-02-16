@@ -1,6 +1,6 @@
 # Everything JS
 
-This is a documentation of interesting experiences, tricks, and bugs I've encountered.
+This is a documentation of memorable experiences and intriguing technologies I've encountered while I build applications and platforms.
 
 ## Credits
 

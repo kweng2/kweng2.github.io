@@ -2,7 +2,7 @@
 title: About
 ---
 
-This is a documentation of interesting experiences, tricks, and bugs I encountered.
+This is a documentation of memorable experiences and intriguing technologies I've encountered while I build applications and platforms.
 
 Enjoy!
 
